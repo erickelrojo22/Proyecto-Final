@@ -3,10 +3,10 @@ import pandas as pd
 import joblib
 # Configuración de página
 st.set_page_config(page_title='FraudApp',
-                   page_icon='/workspaces/Proyecto-Final/data/processed/fraudapp.png',
+                   page_icon='../data/processed/fraudapp.png',
                    layout='centered')
 # Cargar modelo
-model = joblib.load('/workspaces/Proyecto-Final/models/randforest_classifier_.sav')
+model = joblib.load('../models/randforest_classifier_.sav')
 # Variables en el orden correcto para el modelo
 FEATURE_ORDER = [
     "Transaction_Amount", "Transaction_Type_n", "Account_Balance",
@@ -89,7 +89,7 @@ st.markdown("""
         position: fixed;
         width: 100%;
         height: 100%;
-        background-image: url('/workspace/Proyecto-Final/data/processed/logo.webp');
+        background-image: url('../data/processed/logo.webp');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -102,7 +102,7 @@ st.markdown("""
 with st.container():
     # Encabezado centrado
     st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image('/workspaces/Proyecto-Final/data/processed/fraudapp.png', width=200)
+    st.image('../data/processed/fraudapp.png', width=200)
     st.markdown("<h2>Haz tu predicción Bancaria</h2>", unsafe_allow_html=True)
     st.markdown("<h3>Ingrese su información</h3>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
