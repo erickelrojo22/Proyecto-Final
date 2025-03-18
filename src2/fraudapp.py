@@ -1,21 +1,17 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 # Configuración de página
 st.set_page_config(page_title='FraudApp',
                    page_icon='../data/processed/fraudapp.png',
                    layout='centered')
 # Cargar modelo
-
-from pathlib import Path
-
-# Define la ruta base desde donde se ejecuta el script
+# Ruta base desde la raíz del proyecto
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Ruta dinámica para el ícono, modelo y otros recursos
+# Ruta al modelo
 MODEL_PATH = BASE_DIR / 'models/randforest_classifier_.sav'
-ICON_PATH = BASE_DIR / 'data/processed/fraudapp.png'
-LOGO_PATH = BASE_DIR / 'data/processed/logo.webp'
 
 # Cargar el modelo
 model = joblib.load(MODEL_PATH)
