@@ -4,7 +4,7 @@ import joblib
 from pathlib import Path
 # Configuración de página
 st.set_page_config(page_title='FraudApp',
-                   page_icon='../data/processed/fraudapp.png',
+                   page_icon=ICON_PATH,
                    layout='centered')
 # Cargar modelo
 # Ruta base desde la raíz del proyecto
@@ -12,6 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Ruta al modelo
 MODEL_PATH = BASE_DIR / 'models/randforest_classifier_.sav'
+ICON_PATH = BASE_DIR / 'data/processed/fraudapp.png'
 
 # Cargar el modelo
 model = joblib.load(MODEL_PATH)
@@ -112,7 +113,7 @@ st.markdown("""
 with st.container():
     # Encabezado centrado
     st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image('../data/processed/fraudapp.png', width=200)
+    st.image(ICON_PATH, width=200)
     st.markdown("<h2>Haz tu predicción Bancaria</h2>", unsafe_allow_html=True)
     st.markdown("<h3>Ingrese su información</h3>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
