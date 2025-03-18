@@ -6,7 +6,21 @@ st.set_page_config(page_title='FraudApp',
                    page_icon='../data/processed/fraudapp.png',
                    layout='centered')
 # Cargar modelo
-model = joblib.load('../models/randforest_classifier_.sav')
+
+from pathlib import Path
+
+# Define la ruta base desde donde se ejecuta el script
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Ruta dinámica para el ícono, modelo y otros recursos
+MODEL_PATH = BASE_DIR / 'models/randforest_classifier_.sav'
+ICON_PATH = BASE_DIR / 'data/processed/fraudapp.png'
+LOGO_PATH = BASE_DIR / 'data/processed/logo.webp'
+
+# Cargar el modelo
+model = joblib.load(MODEL_PATH)
+
+#model = joblib.load('../models/randforest_classifier_.sav')
 # Variables en el orden correcto para el modelo
 FEATURE_ORDER = [
     "Transaction_Amount", "Transaction_Type_n", "Account_Balance",
