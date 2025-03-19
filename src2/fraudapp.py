@@ -1,18 +1,21 @@
 import streamlit as st
 import pandas as pd
 import joblib
-from pathlib import Path
 # Configuración de página
 st.set_page_config(page_title='FraudApp',
-                   page_icon=ICON_PATH,
+                   page_icon='../data/processed/fraudapp.png',
                    layout='centered')
 # Cargar modelo
-# Ruta base desde la raíz del proyecto
+
+from pathlib import Path
+
+# Define la ruta base desde donde se ejecuta el script
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Ruta al modelo
+# Ruta dinámica para el ícono, modelo y otros recursos
 MODEL_PATH = BASE_DIR / 'models/randforest_classifier_.sav'
 ICON_PATH = BASE_DIR / 'data/processed/fraudapp.png'
+LOGO_PATH = BASE_DIR / 'data/processed/logo.webp'
 
 # Cargar el modelo
 model = joblib.load(MODEL_PATH)
@@ -113,7 +116,7 @@ st.markdown("""
 with st.container():
     # Encabezado centrado
     st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-    st.image(ICON_PATH, width=200)
+    st.image('../data/processed/fraudapp.png', width=200)
     st.markdown("<h2>Haz tu predicción Bancaria</h2>", unsafe_allow_html=True)
     st.markdown("<h3>Ingrese su información</h3>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
@@ -140,9 +143,9 @@ with st.container():
             probability = model.predict_proba([input_data])[0][1]
             # Mostrar resultados
             if prediction[0] == 1:
-                st.error(f':luz_giratoria: Posible fraude detectado (probabilidad: {probability:.2%})')
+                st.error(f' Posible fraude detectado (probabilidad: {probability:.2%})')
             else:
-                st.success(f':marca_de_verificación_blanca: Transacción legítima (probabilidad: {1 - probability:.2%})')
+                st.success(f'Transacción legítima (probabilidad: {1 - probability:.2%})')
         except Exception as e:
             st.error(f"Error en la predicción: {str(e)}")
 
